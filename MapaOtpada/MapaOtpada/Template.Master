@@ -15,7 +15,7 @@
     <script src="Scripts/json2.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 </head>
-<body>
+<body onload="initialize()">
     <div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -37,14 +37,19 @@
                 </asp:ContentPlaceHolder>
             </div>
         </div>
+        </div>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
         <script src="Scripts/gmapsCustom.js"></script>
+       <form id="form1" runat="server">
+       <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+       </form>
         <script src="Scripts/gmaps.js"></script>
         <script>
             $(window).resize(function () {
-                var h = $(window).height(),
+                var h = $(window).height();
+               
                 offsetTop = 0; // Calculate the top offset
-
+                
                 $('#map-canvas').css('height', (h - offsetTop));
             }).resize();
 

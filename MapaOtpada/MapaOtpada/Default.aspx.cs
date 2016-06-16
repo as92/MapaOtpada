@@ -22,15 +22,7 @@ namespace MapaOtpada
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (CitajKoordinate().Count > 0)
-            {
-                //Ispis
-            }
-            else
-            {
-                //ispis da nema nicega
-            }
+  
         }
 
         [WebMethod]
@@ -53,35 +45,6 @@ namespace MapaOtpada
                 }
             }
         }
-        public static List<Koordinate> CitajKoordinate()
-        {
-            var tocke = new List<Koordinate>();
-            string constr = ConfigurationManager.ConnectionStrings["MapaCNSTR"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(constr))
-            {
-                using (SqlCommand cmd = new SqlCommand("SELECT duzina,sirina,opis FROM Koordinate"))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = con;
-                    con.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
 
-
-                        while (reader.Read())
-                        {
-                            var kord = new Koordinate();
-                            kord.Duzina = Convert.ToSingle(reader["Duzina"]);
-                            kord.Sirina = Convert.ToSingle(reader["Sirina"]);
-                            kord.Opis = (string)reader["Opis"];
-                            tocke.Add(kord);
-                        }
-                    }
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
-            return tocke;
-        }
     }
 }
