@@ -16,6 +16,21 @@ namespace MapaOtpada
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var addMarker = "";
+            if (Session["korisnik"] != null)
+            {
+                addMarker = @"google.maps.event.addListener(map,'rightclick', function(e) {
+                            // 3 seconds after the center of the map has changed, pan back to the
+                            // marker.
+                            //alert(e.latLng);
+                             writeToDatabase(e.latLng.lat(), e.latLng.lng(), 'Kakav opis makni se');
+		                    console.log('Širina: '+e.latLng.lat()+' i Dužina: '+e.latLng.lng());
+                            id = e.latLng.lat()+e.latLng.lng()
+		                    addMarkers(id, map, e.latLng);    
+                            });";
+
+            }
+           
             Literal1.Text = @"<script type='text/javascript'>
                                function initialize() {
  var myLatlng = new google.maps.LatLng(43.511390686035156, 16.475044250488281);
@@ -38,16 +53,8 @@ backgroundColor: 'white'
 
 
 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-map.addListener('dblclick', function(e) {
-          // 3 seconds after the center of the map has changed, pan back to the
-          // marker.
-          //alert(e.latLng);
-          writeToDatabase(e.latLng.lat(), e.latLng.lng(), 'Kakav opis makni se');
-		  console.log('Širina: '+e.latLng.lat()+' i Dužina: '+e.latLng.lng());
-          id = e.latLng.lat()+e.latLng.lng()
-		  addMarkers(id, map, e.latLng);    
-   });
-"+CitajKoordinate()+@"
+" + addMarker+ @"
+" + CitajKoordinate()+@"
 }
 google.maps.event.addDomListener(window, 'load', initialize);
                               </script>";

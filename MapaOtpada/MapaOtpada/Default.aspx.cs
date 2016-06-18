@@ -22,9 +22,27 @@ namespace MapaOtpada
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            if (Session["korisnik"] != null)
+            {
+                var KorisnickoIme = Session["korisnik"].ToString();
+                korisnik.Text = KorisnickoIme;
+                prijava.Visible = false;
+                odjava.Visible = true;
+            }
+            else
+            {
+                prijava.Visible = true;
+                odjava.Visible = false;
+            }
   
         }
 
+        public void OdjavaClick(object sender, System.EventArgs e)
+        {
+            Session.RemoveAll();
+            Response.Redirect("Default.aspx");
+        }
         [WebMethod]
         [ScriptMethod]
         public static void SpremiKoordinate(Koordinate koordinate)
