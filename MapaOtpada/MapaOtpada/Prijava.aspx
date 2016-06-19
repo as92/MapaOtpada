@@ -9,7 +9,12 @@
           <asp:TextBox ID="TbKor" runat="server" required="true"  placeholder="Korisničko ime"></asp:TextBox>
           <asp:TextBox ID="TbSifra" runat="server" required="true" placeholder="Lozinka"></asp:TextBox>
           <asp:Button CssClass="login loginmodal-submit" ID="btnSubmit" OnClick="LoginButtonClick" runat="server" Text="Prijava" />
+
 	  </form>
+      <div class="login-help">
+			<a href="Registracija.aspx">Register</a>
+	  </div>
     </div>
    </div>
 </asp:Content>
+ 

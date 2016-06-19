@@ -20,10 +20,18 @@ function writeToDatabase(sirina,duzina, opis) {
         data: '{koordinate: ' + JSON.stringify(koordinate) + '}', // funkcija SpremiKoordinate iz .cs prima koordinate
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function(response) {
+        success: function (response) {
+            $('#spremiModal').modal('hide');
             $("#spremljenoInfo").show().delay(3000).fadeOut();
         }
     });
     return false;
 }
+$('#formSpremi').submit(function (e) {
+    e.preventDefault();
+    var sirina = $('#sirina').val();
+    var duzina = $('#duzina').val();
+    var opis = $('#opis').val();
+    writeToDatabase(sirina, duzina, opis);
+});
 

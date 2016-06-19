@@ -27,7 +27,7 @@ namespace MapaOtpada
             var constr = ConfigurationManager.ConnectionStrings["MapaCNSTR"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO Korisnik VALUES(@Ime, @Prezime, @KorisnickoIme, @Lozinka, @Email)"))
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO Korisnik VALUES(@Ime, @Prezime, @KorisnickoIme, @Lozinka, @Email, @Tip)"))
                 {
                     using (MD5 md5Hash = MD5.Create())
                     {
@@ -38,6 +38,7 @@ namespace MapaOtpada
                         cmd.Parameters.AddWithValue("@KorisnickoIme", TbKor.Text);
                         cmd.Parameters.AddWithValue("@Lozinka", hash);
                         cmd.Parameters.AddWithValue("@Email", TbEmail.Text);
+                        cmd.Parameters.AddWithValue("@Tip", "korisnik");
                         cmd.Connection = con;
                         con.Open();
                         cmd.ExecuteNonQuery();

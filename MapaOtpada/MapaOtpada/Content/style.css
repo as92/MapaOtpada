@@ -441,6 +441,11 @@
   transition: opacity ease 0.5s;
 } 
 
+.loginmodal-container img {
+  display:block;
+  margin:0 auto;
+ 
+} 
 .login-help{
   font-size: 12px;
 }

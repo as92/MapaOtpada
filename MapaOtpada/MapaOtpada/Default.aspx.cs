@@ -50,12 +50,14 @@ namespace MapaOtpada
             string constr = ConfigurationManager.ConnectionStrings["MapaCNSTR"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO Koordinate VALUES(@Duzina, @Sirina, @Opis)"))
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO Koordinate VALUES(@Duzina, @Sirina, @Opis, @Korisnik_Id)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Duzina", koordinate.Duzina);
                     cmd.Parameters.AddWithValue("@Sirina", koordinate.Sirina);
                     cmd.Parameters.AddWithValue("@Opis", koordinate.Opis);
+                    cmd.Parameters.AddWithValue("@Korisnik_Id", HttpContext.Current.Session["id"].ToString());
+
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
