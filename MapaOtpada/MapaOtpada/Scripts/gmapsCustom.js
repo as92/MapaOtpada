@@ -29,8 +29,13 @@ CustomMarker.prototype.draw = function() {
 		    div.dataset.opis = self.args.opis;
 		}
 
+		if (typeof (self.args.slika) !== 'undefined') {
+		    div.dataset.opis = self.args.slika;
+		}
+
 		google.maps.event.addDomListener(div, "click", function (event) {
 		    $('.opisNaslov').text(self.args.opis);
+		    $('.opisSlika').attr('src',self.args.slika);
 		    $('#prikazModal').modal('show');
 			google.maps.event.trigger(self, "click");
 		});

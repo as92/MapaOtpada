@@ -7,7 +7,7 @@
 	 <h1>Prijava</h1><br/>
       <form id="formLogin" runat="server">
           <asp:TextBox ID="TbKor" runat="server" required="true"  placeholder="Korisničko ime"></asp:TextBox>
-          <asp:TextBox ID="TbSifra" runat="server" required="true" placeholder="Lozinka"></asp:TextBox>
+          <asp:TextBox ID="TbSifra" TextMode="Password" runat="server" required="true" placeholder="Lozinka"></asp:TextBox>
           <asp:Button CssClass="login loginmodal-submit" ID="btnSubmit" OnClick="LoginButtonClick" runat="server" Text="Prijava" />
 
 	  </form>

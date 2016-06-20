@@ -25,13 +25,13 @@ namespace MapaOtpada
                             // 3 seconds after the center of the map has changed, pan back to the
                             // marker.
                             //alert(e.latLng);
-                            $('#sirina').val(e.latLng.lat());
-                            $('#duzina').val(e.latLng.lng());
+                            $('#ContentPlaceHolder1_sirina').val(e.latLng.lat());
+                            $('#ContentPlaceHolder1_duzina').val(e.latLng.lng());
                             $('#spremiModal').modal('show');
                             //writeToDatabase(e.latLng.lat(), e.latLng.lng(), 'Kakav opis makni se');
 		                    //console.log('Širina: '+e.latLng.lat()+' i Dužina: '+e.latLng.lng());
-                            id = e.latLng.lat()+e.latLng.lng()
-		                    addMarkers(id, map, e.latLng);    
+                            //id = e.latLng.lat()+e.latLng.lng()
+		                    //addMarkers(id, map, e.latLng);    
                             });";
 
             }
@@ -90,7 +90,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		                        map,
 		                        {
 			                        marker_id:" + reader["id"].ToString() + @",
-                                    opis:'" + reader["opis"].ToString() + @"'
+                                    opis:'" + reader["opis"].ToString() + @"',
                                     slika:'" + reader["urlSlika"].ToString() + @"'
 		                        }
                             );";

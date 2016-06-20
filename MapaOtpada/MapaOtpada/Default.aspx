@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="welcome" runat="server">
-    <form runat="server">
+  <%--  <form runat="server">
     <li>
         <a href="Prijava.aspx" id="prijava" runat="server"><b>Prijava</b></a>
     </li>
@@ -11,7 +11,7 @@
         <asp:Button ID="odjava" runat="server" OnClick="OdjavaClick" Text="Odjava" />
         
     </li>
-    </form>
+    </form>--%>
     <asp:Label ID="korisnik" runat="server" Text="Korisnik"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -22,11 +22,13 @@
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
 					<h1>Login to Your Account</h1><br/>
-				  <form id="formSpremi">
-					  <input  id="sirina" type="hidden" name="sirina" value = ""/>
-                      <input  id="duzina" type="hidden" name="duzina" value = ""/>
-                      <input  id="opis" type="text" name="opis" placeholder="Opis" required/>
-					  <input type="submit" name="spremi" class="login loginmodal-submit" value="Spremi"/>
+				  <form id="formSpremi" runat="server" action="#">
+					  <input  id="sirina" type="hidden" name="sirina" value = "" runat="server" />
+                      <input  id="duzina" type="hidden" name="duzina" value = "" runat="server"/>
+                      <input  id="opis" type="text" name="opis" placeholder="Opis" required  runat="server"/>
+                       <input type="file" class="upload"  id="fileUpload" runat="server" name="file"/>
+                      <asp:Button ID="BtnUnos" runat="server" Text="Unesi"  OnClick="BtnUnos_Click" Font-Size="Medium" />
+					  <%--<input type="submit" name="spremi" class="login loginmodal-submit" value="Spremi"/>--%>
 				  </form>
 				</div>
 			</div>
@@ -35,7 +37,7 @@
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
 					<h1 class="opisNaslov"></h1>
-                    <img alt="" src="Images/9691b1d935242437ce69da71562e8026.jpg" />
+                    <img class="opisSlika" alt="" src="" />
 				</div>
 			</div>
 	</div>
