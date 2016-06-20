@@ -16,11 +16,6 @@ CustomMarker.prototype.draw = function() {
 	
 		div = this.div = document.createElement('div');
 		
-		div.className = 'pin';
-		div.attributes.class = "pin";
-		
-	
-		
 		if (typeof(self.args.marker_id) !== 'undefined') {
 			div.dataset.marker_id = self.args.marker_id;
 		}
@@ -30,13 +25,42 @@ CustomMarker.prototype.draw = function() {
 		}
 
 		if (typeof (self.args.slika) !== 'undefined') {
-		    div.dataset.opis = self.args.slika;
+		    div.dataset.slika = self.args.slika;
+		}
+
+		if (typeof (self.args.ime) !== 'undefined') {
+		    div.dataset.ime = self.args.ime;
+		}
+		if (typeof (self.args.prezime) !== 'undefined') {
+		    div.dataset.prezime = self.args.prezime;
+		}
+		if (typeof (self.args.stanje) !== 'undefined') {
+		    div.dataset.stanje = self.args.stanje;
+		}
+
+		if (self.args.stanje == 0) {
+		    div.className = 'pin prijavljeno';
+		    div.attributes.class = "pin prijavljeno";
+
+		}
+		else {
+		    div.className = 'pin preuzeto';
+		    div.attributes.class = "pin preuzeto";
 		}
 
 		google.maps.event.addDomListener(div, "click", function (event) {
 		    $('.opisNaslov').text(self.args.opis);
-		    $('.opisSlika').attr('src',self.args.slika);
+		    $('.opisSlika').attr('src', self.args.slika);
+		    $('.markerId').val(self.args.marker_id);
+		    if (self.args.stanje == 1) {
+		        $("#ContentPlaceHolder1_BtnPromijeniStanje").prop('value', "Završi");
+		    }
+		    else {
+		        $("#ContentPlaceHolder1_BtnPromijeniStanje").prop('value', 'Preuzmi')
+		    }
 		    $('#prikazModal').modal('show');
+		    //dodati ime i prezime u ovaj popup
+		    //mozda i datum
 			google.maps.event.trigger(self, "click");
 		});
 		

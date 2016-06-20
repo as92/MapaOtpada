@@ -5,7 +5,7 @@
     <div class="reg">
     <div class="loginmodal-container">
 	 <h1>Registracija</h1><br/>
-      <form id="formLogin" runat="server">
+      <form id="formLogin">
           <asp:TextBox ID="TbIme" runat="server" required="true"  placeholder="Ime"></asp:TextBox>
           <asp:TextBox ID="TbPrezime" runat="server" required="true"  placeholder="Prezime"></asp:TextBox>
           <asp:TextBox ID="TbKor" runat="server" required="true"  placeholder="Korisničko ime"></asp:TextBox>

@@ -32,14 +32,19 @@ namespace MapaOtpada
             {
                 var KorisnickoIme = Session["korisnik"].ToString();
                 korisnik.Text = KorisnickoIme;
-                //prijava.Visible = false;
-                //odjava.Visible = true;
+                prijava.Visible = false;
+                odjava.Visible = true;
+                if (Session["tip"].ToString() == "admin")
+                {
+                    BtnPromijeniStanje.Visible = true;
+                }
             }
             else
             {
-                //prijava.Visible = true;
-                //odjava.Visible = false;
+                prijava.Visible = true;
+                odjava.Visible = false;
             }
+            
   
         }
 
@@ -48,14 +53,33 @@ namespace MapaOtpada
             Session.RemoveAll();
             Response.Redirect("Default.aspx");
         }
-        [WebMethod]
-        [ScriptMethod]
-        public static void SpremiKoordinate(Koordinate koordinate)
+
+        public void PromijeniStanje(object sender, System.EventArgs e)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["MapaCNSTR"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("IF (Select Stanje from Koordinate where Id=@Marker_Id)=1" +
+                    "DELETE FROM Koordinate where Id=@Marker_Id;" +
+                   "ELSE UPDATE Koordinate SET Stanje=1 WHERE Id = @Marker_Id;"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Marker_Id", markerId.Value);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    Response.Redirect("Default.aspx");
+                }
+            }
+        }
+
+        public void SpremiKoordinate(Koordinate koordinate)
         { 
             string constr = ConfigurationManager.ConnectionStrings["MapaCNSTR"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO Koordinate VALUES(@Duzina, @Sirina, @Opis, @Korisnik_Id, @urlSlika)"))
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO Koordinate VALUES(@Duzina, @Sirina, @Opis, @Korisnik_Id, @urlSlika, @Stanje)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Duzina", koordinate.Duzina);
@@ -63,16 +87,19 @@ namespace MapaOtpada
                     cmd.Parameters.AddWithValue("@Opis", koordinate.Opis);
                     cmd.Parameters.AddWithValue("@Korisnik_Id", HttpContext.Current.Session["id"].ToString());
                     cmd.Parameters.AddWithValue("@urlSlika", koordinate.Slika);
+                    cmd.Parameters.AddWithValue("@Stanje", 0);
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
+                    Response.Redirect("Default.aspx");
                 }
             }
         }
 
         protected void BtnUnos_Click(object sender, EventArgs e)
         {
+            //Sliku uploadamo na server u direkotrij Images
             var koordinate = new Koordinate();
             var path = "";
             if (System.IO.File.Exists(Server.MapPath("~/Images/" + fileUpload.Value)))
@@ -85,15 +112,13 @@ namespace MapaOtpada
                 {
                 path = "~/Images/" + fileUpload.Value;
                     fileUpload.PostedFile.SaveAs(Server.MapPath(path));
-                   
                 }
-
-          
-            koordinate.Sirina = sirina.Value;
-            koordinate.Duzina = duzina.Value;
-            koordinate.Opis = opis.Value;
-            koordinate.Slika = path;
-            SpremiKoordinate(koordinate);
+                koordinate.Sirina = sirina.Value;
+                koordinate.Duzina = duzina.Value;
+                koordinate.Opis = opis.Value;
+                koordinate.Slika = path.Replace("~","");
+                //U bazu spremimo URL od slike
+                SpremiKoordinate(koordinate);
         }
     }
 }

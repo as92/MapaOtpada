@@ -1,12 +1,20 @@
-//function addMarkers(id, map, koordinate) {
-//	overlay = new CustomMarker(
-//		koordinate, 
-//		map,
-//		{
-//			marker_id: id
-//		}
-//     );
-//}
+function addMarkers(id, map, koordinate) {
+	overlay = new CustomMarker(
+		koordinate, 
+		map,
+		{
+			marker_id: id
+		}
+     );
+}
+
+function showSpremi(sirina,duzina) {
+    $('#ContentPlaceHolder1_sirina').val(sirina);
+    $('#ContentPlaceHolder1_duzina').val(duzina);
+    $('#ContentPlaceHolder1_opis').attr('required','required');
+    $('#ContentPlaceHolder1_fileUpload').attr('required','required');
+    $('#spremiModal').modal('show');
+}
 
 //function writeToDatabase(sirina,duzina, opis, slika) {
 //    var koordinate = {};

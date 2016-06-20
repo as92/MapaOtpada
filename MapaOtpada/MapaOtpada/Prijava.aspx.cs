@@ -25,7 +25,7 @@ namespace MapaOtpada
             string constr = ConfigurationManager.ConnectionStrings["MapaCNSTR"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT Id, Lozinka FROM Korisnik WHERE KorisnickoIme = @KorIme"))
+                using (SqlCommand cmd = new SqlCommand("SELECT Id, Lozinka,Tip FROM Korisnik WHERE KorisnickoIme = @KorIme"))
                 {
                     cmd.Parameters.Add(new SqlParameter("KorIme", TbKor.Text));
                     cmd.CommandType = CommandType.Text;
@@ -43,6 +43,7 @@ namespace MapaOtpada
                                     btnSubmit.Text = "Radiovo";
                                     Session["id"] = reader["Id"].ToString();
                                     Session["korisnik"] = TbKor.Text;
+                                    Session["tip"] = reader["Tip"].ToString();
                                     Response.Redirect("Default.aspx");
                                     Session.RemoveAll();
                                 }

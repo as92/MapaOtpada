@@ -1,11 +1,10 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Template.master.cs" Inherits="MapaOtpada.Template" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Mapa otpada</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link rel="stylesheet" href="Content/bootstrap.css" />
@@ -16,6 +15,7 @@
     <script src="Scripts/bootstrap.min.js"></script>
 </head>
 <body onload="initialize()">
+    <form runat="server">
     <div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -44,6 +44,7 @@
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
         <script src="Scripts/gmapsCustom.js"></script>
         <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+        </form>
         <script src="Scripts/gmaps.js"></script>
         <script>
             $(window).resize(function () {

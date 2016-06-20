@@ -16,54 +16,43 @@ namespace MapaOtpada
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var addMarker = "";
-            if (Session["korisnik"] != null)
+            var forma_marker = "";
+            if (Session["korisnik"] != null && Session["tip"].ToString() != "admin")
             {
-
-                addMarker = @"
+                //event za desni klik na mapu
+                forma_marker = @"
                             google.maps.event.addListener(map,'rightclick', function(e) {
-                            // 3 seconds after the center of the map has changed, pan back to the
-                            // marker.
-                            //alert(e.latLng);
-                            $('#ContentPlaceHolder1_sirina').val(e.latLng.lat());
-                            $('#ContentPlaceHolder1_duzina').val(e.latLng.lng());
-                            $('#spremiModal').modal('show');
-                            //writeToDatabase(e.latLng.lat(), e.latLng.lng(), 'Kakav opis makni se');
-		                    //console.log('Širina: '+e.latLng.lat()+' i Dužina: '+e.latLng.lng());
-                            //id = e.latLng.lat()+e.latLng.lng()
-		                    //addMarkers(id, map, e.latLng);    
+                            showSpremi(e.latLng.lat, e.latLng.lng); 
                             });";
 
             }
            
             Literal1.Text = @"<script type='text/javascript'>
                                function initialize() {
- var myLatlng = new google.maps.LatLng(43.511390686035156, 16.475044250488281);
- var mapOptions = {
-  zoom: 14,
-  center: myLatlng,
-  mapTypeControl: true,
-  scaleControl: true,
-  mapTypeControlOptions: {
-    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-},
-navigationControl: true,
-navigationControlOptions: {
-    style: google.maps.NavigationControlStyle.DEFAULT
-},
-mapTypeId: google.maps.MapTypeId.ROADMAP,
-backgroundColor: 'white'
-}
+                                    var myLatlng = new google.maps.LatLng(43.511390686035156, 16.475044250488281);
+                                    var mapOptions = {
+                                    zoom: 14,
+                                    center: myLatlng,
+                                    mapTypeControl: true,
+                                    scaleControl: true,
+                                    mapTypeControlOptions: {
+                                        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                                    },
+                                    navigationControl: true,
+                                    navigationControlOptions: {
+                                    style: google.maps.NavigationControlStyle.DEFAULT
+                                    },
+                                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                    backgroundColor: 'white'
+                                    }
 
-
-
-var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-" + addMarker+ @"
-" + CitajKoordinate()+@"
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-                              </script>";
-        }
+                                    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                                    " + forma_marker+ @"
+                                    " + CitajKoordinate()+@"
+                                    }
+                                    google.maps.event.addDomListener(window, 'load', initialize);
+                                     </script>"; //funkcija za inicijalizaciju google mape
+             }
 
         public string CitajKoordinate()
         {
@@ -72,7 +61,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             string constr = ConfigurationManager.ConnectionStrings["MapaCNSTR"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT Koordinate.Id,sirina,duzina,opis, urlSlika, Korisnik.Ime, Korisnik.Prezime FROM Koordinate INNER JOIN Korisnik on Korisnik_Id = Korisnik.Id"))
+                using (SqlCommand cmd = new SqlCommand("SELECT Koordinate.Id,sirina,duzina,opis, urlSlika, Stanje, Korisnik.Ime, Korisnik.Prezime FROM Koordinate INNER JOIN Korisnik on Korisnik_Id = Korisnik.Id"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = con;
@@ -91,7 +80,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		                        {
 			                        marker_id:" + reader["id"].ToString() + @",
                                     opis:'" + reader["opis"].ToString() + @"',
-                                    slika:'" + reader["urlSlika"].ToString() + @"'
+                                    slika:'" + reader["urlSlika"].ToString() + @"',
+                                    stanje:'" + reader["Stanje"].ToString() + @"',
+                                    ime:'" + reader["Ime"].ToString() + @"',
+                                    prezime:'" + reader["Prezime"].ToString() + @"'
 		                        }
                             );";
                         }
