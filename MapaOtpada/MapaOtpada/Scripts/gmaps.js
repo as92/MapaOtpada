@@ -8,6 +8,7 @@ function addMarkers(id, map, koordinate) {
      );
 }
 
+
 function showSpremi(sirina,duzina) {
     $('#ContentPlaceHolder1_sirina').val(sirina);
     $('#ContentPlaceHolder1_duzina').val(duzina);
@@ -16,6 +17,25 @@ function showSpremi(sirina,duzina) {
     $('#spremiModal').modal('show');
 }
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    console.log(url);
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    console.log(results);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2]); //vraca vrijednost query stringa//
+}
+
+
+var querystr = getParameterByName('spremi');
+console.log(querystr);
+if (querystr == "ok") {
+    $('#spremljenoInfo').show().delay(3000).fadeOut();
+    window.history.pushState("object or string", "Title", "/Default.aspx");
+}
 //function writeToDatabase(sirina,duzina, opis, slika) {
 //    var koordinate = {};
 //    koordinate.Sirina = sirina;

@@ -28,12 +28,13 @@ namespace MapaOtpada
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            if (Session["korisnik"] != null)
+            if (Session["korisnik"] != null)//sessionu dodajemo vrijednosti u prijava.aspx.cs
             {
-                var KorisnickoIme = Session["korisnik"].ToString();
-                korisnik.Text = KorisnickoIme;
+                var ime = Session["ime"].ToString();
+                korisnik.Text = "Dobrodošli, "+ime;
                 prijava.Visible = false;
                 odjava.Visible = true;
+                korisnik.Visible = true;
                 if (Session["tip"].ToString() == "admin")
                 {
                     BtnPromijeniStanje.Visible = true;
@@ -43,6 +44,7 @@ namespace MapaOtpada
             {
                 prijava.Visible = true;
                 odjava.Visible = false;
+                korisnik.Visible = false;
             }
             
   
@@ -92,7 +94,8 @@ namespace MapaOtpada
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("Default.aspx?spremi=ok");
+
                 }
             }
         }
@@ -103,22 +106,22 @@ namespace MapaOtpada
             var koordinate = new Koordinate();
             var path = "";
             if (System.IO.File.Exists(Server.MapPath("~/Images/" + fileUpload.Value)))
-                {
+            {
                 path = "~/ Images / " + fileUpload.Value.Insert(fileUpload.Value.IndexOf("."), "2");
-                    fileUpload.PostedFile.SaveAs(Server.MapPath(path));
-                    
-                }
-                else
-                {
+                fileUpload.PostedFile.SaveAs(Server.MapPath(path));
+
+            }
+            else
+            {
                 path = "~/Images/" + fileUpload.Value;
-                    fileUpload.PostedFile.SaveAs(Server.MapPath(path));
-                }
-                koordinate.Sirina = sirina.Value;
-                koordinate.Duzina = duzina.Value;
-                koordinate.Opis = opis.Value;
-                koordinate.Slika = path.Replace("~","");
-                //U bazu spremimo URL od slike
-                SpremiKoordinate(koordinate);
+                fileUpload.PostedFile.SaveAs(Server.MapPath(path));
+            }
+            koordinate.Sirina = sirina.Value;
+            koordinate.Duzina = duzina.Value;
+            koordinate.Opis = opis.Value;
+            koordinate.Slika = path.Replace("~", "");
+            //U bazu spremimo URL od slike
+            SpremiKoordinate(koordinate);
         }
     }
 }

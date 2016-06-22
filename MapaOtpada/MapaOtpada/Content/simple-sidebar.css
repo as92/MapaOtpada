@@ -31,7 +31,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background: url("/Content/bg.png") repeat;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -71,7 +71,7 @@
 .sidebar-nav li a, .sidebar-nav li input{
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #000000;
 }
 
 .sidebar-nav li a:hover, .sidebar-nav li input:hover{
@@ -92,7 +92,7 @@
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #000000;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {

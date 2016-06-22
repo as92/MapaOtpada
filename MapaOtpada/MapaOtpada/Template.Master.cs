@@ -45,35 +45,38 @@ namespace MapaOtpada
                                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                                     backgroundColor: 'white'
                                     }
-
-                                    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                                    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
                                     " + forma_marker+ @"
-                                    " + CitajKoordinate()+@"
+                                    " + CitajKoordinate()+ @"
+                                       map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(
+                                         document.getElementById('legend'));
+
                                     }
                                     google.maps.event.addDomListener(window, 'load', initialize);
-                                     </script>"; //funkcija za inicijalizaciju google mape
+                                     </script>"; //funkcija za inicijalizaciju google mape, dodaje markere na mapu nakon što se stranica učita
              }
 
         public string CitajKoordinate()
         {
             var markers = "";
-            var tocke = new List<Koordinate>();
-            string constr = ConfigurationManager.ConnectionStrings["MapaCNSTR"].ConnectionString;
+            var constr = ConfigurationManager.ConnectionStrings["MapaCNSTR"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT Koordinate.Id,sirina,duzina,opis, urlSlika, Stanje, Korisnik.Ime, Korisnik.Prezime FROM Koordinate INNER JOIN Korisnik on Korisnik_Id = Korisnik.Id"))
+                using (SqlCommand cmd = new SqlCommand("SELECT Koordinate.Id,sirina,duzina,opis, urlSlika, Stanje, Korisnik.Ime, Korisnik.Prezime FROM Koordinate INNER JOIN Korisnik on Korisnik_Id = Korisnik.Id")) 
+                    /*dohvacamo sve iz tablice koordinate gdje je ID od korisnika iz tablice
+                    korisnik jednak Korisnik_Id iz tablice koordinate*/
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = con;
                     con.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        var i = 0;
+                        
                         while (reader.Read())
                         {
-                            i++;
+                            
                             markers +=
-                            @"  koordinate = new google.maps.LatLng(" + reader["Sirina"].ToString().Replace(',','.') + "," + reader["Duzina"].ToString().Replace(',', '.') + @")
+                            @"  koordinate = new google.maps.LatLng(" + reader["Sirina"].ToString().Replace(',', '.') + "," + reader["Duzina"].ToString().Replace(',', '.') + @")
                                 overlay = new CustomMarker(
 		                        koordinate, 
 		                        map,
@@ -92,7 +95,7 @@ namespace MapaOtpada
                     con.Close();
                 }
             }
-            return markers;
+            return markers;// vraca string sa marker id, opison, slikon, stanjem, imenom i prezimenon to korisitmo u Literal1.text
         }
     }
 }

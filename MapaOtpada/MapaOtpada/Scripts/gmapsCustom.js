@@ -49,9 +49,10 @@ CustomMarker.prototype.draw = function() {
 		}
 
 		google.maps.event.addDomListener(div, "click", function (event) {
-		    $('.opisNaslov').text(self.args.opis);
+		    $('.modal-title').text(self.args.opis);
 		    $('.opisSlika').attr('src', self.args.slika);
 		    $('.markerId').val(self.args.marker_id);
+		    $('.korisnik').text(self.args.ime+" "+self.args.prezime);
 		    if (self.args.stanje == 1) {
 		        $("#ContentPlaceHolder1_BtnPromijeniStanje").prop('value', "Završi");
 		    }

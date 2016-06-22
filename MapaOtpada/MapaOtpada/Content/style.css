@@ -15,6 +15,7 @@
 .preuzeto{
     background: #4bd24b; 
 }
+
 .pin {
   width: 30px;
   height: 30px;
@@ -445,8 +446,15 @@
   opacity: 0.6;
   transition: opacity ease 0.5s;
 } 
-
-.loginmodal-container img {
+#legend {
+    background: rgba(255,255,255,0.6);   
+    padding: 9px;
+    margin-left: 10px;
+  }
+#legend table td{
+    padding-bottom:4px;
+}
+.modal-body img {
   display:block;
   margin:0 auto;
   max-width:280px;

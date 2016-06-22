@@ -94,11 +94,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bg.png" />
+    <Content Include="Content\fileinput.css" />
     <Content Include="packages.config" />
     <Content Include="Prijava.aspx" />
     <Content Include="Registracija.aspx" />
+    <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="fileUploader.ashx" />
+    <None Include="Properties\PublishProfiles\MapaOtpada.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -137,7 +141,10 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\json2.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="transparent_white.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Template.Master" />
   </ItemGroup>
   <ItemGroup>
@@ -191,7 +198,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>19190</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:19190/</IISUrl>
+          <IISUrl>http://localhost:19190</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
