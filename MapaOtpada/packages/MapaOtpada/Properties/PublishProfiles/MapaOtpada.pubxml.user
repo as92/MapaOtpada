@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Franka\Desktop\MapaOtpada</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_Data/MapaOtpadaBaza.mdf">
+      <publishTime>06/21/2016 01:34:46</publishTime>
+    </File>
+    <File Include="App_Data/MapaOtpadaBaza_log.ldf">
+      <publishTime>06/21/2016 01:34:46</publishTime>
+    </File>
+    <File Include="bin/MapaOtpada.dll">
+      <publishTime>06/21/2016 01:41:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>06/15/2016 23:37:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>06/19/2016 20:23:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>06/15/2016 23:36:57</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>06/15/2016 23:36:58</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>06/15/2016 23:36:58</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>06/15/2016 23:36:58</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>06/15/2016 23:36:59</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>06/15/2016 23:36:59</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>06/15/2016 23:36:59</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>06/15/2016 23:36:59</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>06/15/2016 23:36:59</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>06/15/2016 23:36:59</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>06/15/2016 23:36:59</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>06/15/2016 23:36:59</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>06/19/2016 20:23:36</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>06/19/2016 20:23:41</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>06/19/2016 20:23:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>06/19/2016 20:23:36</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>06/19/2016 20:23:36</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>06/19/2016 20:23:37</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css.map">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css.map">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css.map">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Content/simple-sidebar.css">
+      <publishTime>06/21/2016 01:10:56</publishTime>
+    </File>
+    <File Include="Content/style.css">
+      <publishTime>06/20/2016 18:04:05</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>06/21/2016 00:54:00</publishTime>
+    </File>
+    <File Include="favicon.png">
+      <publishTime>06/16/2016 00:48:22</publishTime>
+    </File>
+    <File Include="fileUploader.ashx">
+      <publishTime>06/20/2016 00:47:49</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>06/19/2016 20:23:41</publishTime>
+    </File>
+    <File Include="Prijava.aspx">
+      <publishTime>06/20/2016 12:33:28</publishTime>
+    </File>
+    <File Include="Registracija.aspx">
+      <publishTime>06/20/2016 12:25:57</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>06/16/2016 00:17:43</publishTime>
+    </File>
+    <File Include="Scripts/gmaps.js">
+      <publishTime>06/21/2016 00:46:15</publishTime>
+    </File>
+    <File Include="Scripts/gmapsCustom.js">
+      <publishTime>06/21/2016 00:53:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.9.1.js">
+      <publishTime>06/16/2016 00:17:39</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.9.1.min.js">
+      <publishTime>06/16/2016 00:17:38</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.9.1.min.map">
+      <publishTime>06/16/2016 00:17:38</publishTime>
+    </File>
+    <File Include="Scripts/json2.js">
+      <publishTime>06/16/2016 00:40:22</publishTime>
+    </File>
+    <File Include="Scripts/json2.min.js">
+      <publishTime>06/16/2016 00:40:22</publishTime>
+    </File>
+    <File Include="Template.Master">
+      <publishTime>06/20/2016 17:28:31</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>06/21/2016 01:41:48</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

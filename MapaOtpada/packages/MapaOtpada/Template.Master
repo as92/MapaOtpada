@@ -1,0 +1,86 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Template.master.cs" Inherits="MapaOtpada.Template" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Mapa otpada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.png" />
+    <link rel="stylesheet" href="Content/bootstrap.css" />
+    <link rel="stylesheet" href="Content/style.css" />
+    <link rel="stylesheet" href="Content/simple-sidebar.css" />
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/json2.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/fileinput.js"></script>
+    <link rel="stylesheet" href="Content/fileinput.css" />
+
+</head>
+<body onload="initialize()">
+    <form runat="server">
+        <!-- bez forme nebi mogli pristupiti buttonovima za prijavu, odjavu, promjeni stanja, moguće je stvoriti samo 1 formu po stranici -->
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="Default.aspx">Mapa otpada
+                        </a>
+                    </li>
+                    <li class="lilert">
+                        <div style="display: none" id="spremljenoInfo" class="alert alert-success" role="alert">
+                            <strong>Lokacija spremljena!</strong>
+                        </div>
+                    </li>
+                    <asp:ContentPlaceHolder ID="welcome" runat="server"></asp:ContentPlaceHolder>
+                    <!-- koristimo ga u default.aspx za spremanje prijava odjave i imena korisnika, za spremanje sadržaja -->
+                </ul>
+            </div>
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <script src="Scripts/gmapsCustom.js"></script>
+        <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+        <!-- koristimo asp literal klasu da bi mogli u c# pisati i izvršavati javascript funkcije-->
+    </form>
+    <script src="Scripts/gmaps.js"></script>
+    <script>
+        $(window).resize(function () {
+            var h = $(window).height();
+
+            offsetTop = 0; // Calculate the top offset
+
+            $('#map-canvas').css('height', (h - offsetTop));
+        }).resize();
+
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    <div id="legend">
+        <table>
+            <tr>
+                <td>
+    <img src="/Content/zeleni.png" /> Otklon u tijeku
+                    </td>
+                </tr>
+            <tr>
+                <td>
+     <img src="/Content/crveni.png" /> Prijavljeno
+                    </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
